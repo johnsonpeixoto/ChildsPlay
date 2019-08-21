@@ -2,10 +2,10 @@
 Atividades da disciplina de Sistemas Operacionais
 
 ## Detalhes do Projeto:
-Criado no IntelliJ IDEA
 
-Versão da JVM
+Criado no IntelliJ IDEA.
 
+Versão da JVM:
 ```
 java version "1.8.0_201"
 Java(TM) SE Runtime Environment (build 1.8.0_201-b09)
