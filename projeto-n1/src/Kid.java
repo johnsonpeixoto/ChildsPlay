@@ -1,39 +1,68 @@
+import java.util.concurrent.Semaphore;
+
 public class Kid extends Thread {
 
-	boolean haveBall;
-	String name;
-	long playTime;
-	long restTime;
-	
-	public Kid (String name, boolean haveBall, long playTime, long restTime) {
-		super(name);
+	private boolean haveBall;
+    private String nome;
+    private long playTime;
+    private long restTime;
+
+	public Kid (String nome, boolean haveBall, long playTime, long restTime) {
+		super(nome);
 		this.haveBall = haveBall;
 		this.playTime = playTime;
 		this.restTime = restTime;
-	}
-	
-	public Kid(String name) {
-		super(name);
+
+	public Kid(String nome) {
+		super(nome);
 	}
 
 	public void toPlay(long playTime){
-		int time;
+
+	    int time;
 	}
 
 	public void toRest(long restTime){
 
 	}
-	
+	public void guardaBola() {
+
+    }
+
+    public void ficaQuieta() {
+
+	}
+
+	public void comBola() {
+	    toPlay(); //brinca
+        //down(slots);
+        //down(mutex);
+        guardaBola();
+        //up(mutex);
+        //up(bolasCesto);
+        ficaQuieta();
+    }
+
+    public void semBola() {
+       // down(bolasCesto);
+        //down(mutex);
+        //cesta.retiraBola();
+        //up(mutex);
+        //up(vagas);
+	}
+
+
+
 	public void run() {
-		for (int i=0; i<4; i++) {
-			int x=0;
-			for (int j=0; j<100000; j++) {
-				for (int k=0; k<50000; k++) {
-					x = x + 2;  
-				}
-			}
-			System.out.println (getName() + " " + i);
-		}
+        while(true) {
+            if(haveBall)  {
+                comBola();
+            }
+            else {
+                semBola();
+            }
+        }
+
 	}
 	
 	
