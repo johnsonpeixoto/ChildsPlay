@@ -2,6 +2,10 @@
 .DS_Store
 .idea
 
+# Outros Projetos
+thread-com-java/
+projeto-n1/
+
 # Compiled class file
 *.class
 

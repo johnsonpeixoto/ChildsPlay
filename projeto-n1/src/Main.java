@@ -2,7 +2,7 @@
 public class Main {
 
 	public static void main(String[] args) {
-		Kid t1 = new Kid ("Ceara");
+		Kid t1 = new Kid ("peba");
 		Kid t2 = new Kid ("Fortaleza");
 		//t1.start ();
 		//t2.start ();
