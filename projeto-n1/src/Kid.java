@@ -7,30 +7,37 @@ public class Kid extends Thread {
     private long playTime;
     private long restTime;
 
-	public Kid (String nome, boolean haveBall, long playTime, long restTime) {
-		super(nome);
+	public Kid(String nome, boolean haveBall, long playTime, long restTime) {
+		this.nome;
 		this.haveBall = haveBall;
 		this.playTime = playTime;
 		this.restTime = restTime;
+	}
 
-	public Kid(String nome) {
-		super(nome);
+	// Função para criar um tempo usando CPU Bound
+	public void cpuBound(long tempo){
+		long t = System.currentTimeMillis();
+		long elapsed;
+		while (true) {
+			elapsed = System.currentTimeMillis() - t;
+			System.out.println(elapsed/1000);
+		}
 	}
 
 	public void toPlay(long playTime){
-
-	    int time;
+	    cpuBound(playTime);
 	}
 
 	public void toRest(long restTime){
-
+		cpuBound(restTime);
 	}
-	public void guardaBola() {
 
+	public void guardaBola() {
+		//animaçao
     }
 
     public void ficaQuieta() {
-
+		//animaçao
 	}
 
 	public void comBola() {
@@ -52,18 +59,13 @@ public class Kid extends Thread {
 	}
 
 
-
 	public void run() {
-        while(true) {
-            if(haveBall)  {
-                comBola();
-            }
-            else {
-                semBola();
-            }
-        }
-
+		while (true) {
+			if (this.haveBall) {
+				comBola();
+			} else {
+				semBola();
+			}
+		}
 	}
-	
-	
 }
