@@ -31,7 +31,7 @@ public class Kid extends Thread {
 			System.out.println(elapsed/1000);
 		}
 	}*/
-
+	//funcao de teste p o programa
 	public void cpuBound(long tempo){
 		for (int count = 0 ; count < 100000; count++){
 			System.out.println(nome + " " + count);
