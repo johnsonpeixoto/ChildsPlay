@@ -5,18 +5,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		int capacity = 5;
-		public Semaphore mutex = new Semaphore(1);
-		public Semaphore bolasCesto = new Semaphore(0); // bolas no cesto
-		public Semaphore vagas = new Semaphore(capacity); // vagas
-
-		Kid t1 = new Kid ("Ceara");
-		Kid t2 = new Kid ("Fortaleza");
-		//t1.start ();
-		//t2.start ();
-
-		/*
-		t1.setPriority(1);
-		t2.setPriority(5);
-		*/
+		Parque park = new Parque(capacity);
+		park.addKid(true,"vinicius",10,10);
+		park.addKid(true,"vini",10,10);
+		park.addKid(false,"vin",10,10);
+		park.addKid(true,"icius",10,10);
 	}
 }
