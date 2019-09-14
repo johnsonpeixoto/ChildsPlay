@@ -21,34 +21,30 @@ public class Kid extends Thread {
 		this.tempoDorme = tempoDorme;
 	}
 
-	// Função para criar um tempo usando CPU Bound
-	/*
-	public void cpuBound(long tempo){
-		long t = System.currentTimeMillis();
-		long elapsed;
-		while (true) {
-			elapsed = System.currentTimeMillis() - t;
-			System.out.println(elapsed/1000);
-		}
-	}*/
-	//funcao de teste p o programa
-	public void cpuBound(long tempo){
-		for (int count = 0 ; count < 100000; count++){
-			System.out.println(nome + " " + count);
-			for (int count2 = 0 ; count2 < 10000; count2++){
-					long count3;
-					count3 = count * count2;
-
-			}
-		}
+	// Funcao para criar um tempo usando CPU Bound
+	
+	public void cpuBound(long tempo) {
+	    System.out.println("Entrou no cpuBound!");
+	    long tempoAtual = System.currentTimeMillis();
+	    long tempoDecorrido = 0, milisegundos = 0;
+	    while (tempoDecorrido < tempo) {
+	    	milisegundos = (System.currentTimeMillis() - tempoAtual);
+	    	if( (milisegundos / 1000) > tempoDecorrido) {
+	    		System.out.println("Se passaram: " + tempoDecorrido + " segundos Crianca: " +
+	    							nome);
+	    	}
+	    	tempoDecorrido = milisegundos / 1000;
+	    }
+	    System.out.println("Saiu!");
+	    
 	}
-
+	
 	//funcoes cpubound
-	public void brincar(){
+	public void brincar() {
 		cpuBound(tempoBrinca);
 	}
 
-	public void dormir(){
+	public void dormir() {
 		cpuBound(tempoDorme);
 	}
 
@@ -71,7 +67,7 @@ public class Kid extends Thread {
     }
 
     public void ficaQuieta() {
-		//animaçao
+		//animacao
 	}
 
 
@@ -82,6 +78,7 @@ public class Kid extends Thread {
 				System.out.println(this.nome + " esta brincando");
 				brincar();
 				System.out.println(this.nome + " terminou de brincar");
+				
 				try {
 					guardaBola();
 				} catch (InterruptedException e) {
@@ -91,8 +88,8 @@ public class Kid extends Thread {
 				this.temBola = false;
 				System.out.println(this.nome + " esta dormindo");
 				dormir();
-
-			} else {
+			} 
+			else {
 				System.out.println(this.nome + " vai pegar bola");
 				try {
 					pegaBola();
