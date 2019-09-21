@@ -35,4 +35,36 @@ public class Parque {
             }
         });
     }
+
+    public Semaphore getMutex() {
+        return mutex;
+    }
+
+    public void setMutex(Semaphore mutex) {
+        this.mutex = mutex;
+    }
+
+    public Semaphore getBolasCesto() {
+        return bolasCesto;
+    }
+
+    public void setBolasCesto(Semaphore bolasCesto) {
+        this.bolasCesto = bolasCesto;
+    }
+
+    public Semaphore getVagas() {
+        return vagas;
+    }
+
+    public void setVagas(Semaphore vagas) {
+        this.vagas = vagas;
+    }
+
+    public List<Kid> getKids() {
+        return kids;
+    }
+
+    public void setKids(List<Kid> kids) {
+        this.kids = kids;
+    }
 }

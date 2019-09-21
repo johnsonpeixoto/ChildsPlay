@@ -11,6 +11,12 @@ public class Kid extends Thread {
     private long tempoBrinca;
     private long tempoDorme;
 
+    private long aux;
+
+    private CallBacks calback;
+
+
+
 	public Kid(Semaphore mutex, Semaphore bolasCesto, Semaphore vagas, boolean temBola, String nome, long tempoBrinca, long tempoDorme) {
 		this.mutex = mutex;
 		this.bolasCesto = bolasCesto;
@@ -19,6 +25,7 @@ public class Kid extends Thread {
 		this.nome = nome;
 		this.tempoBrinca = tempoBrinca;
 		this.tempoDorme = tempoDorme;
+		aux = tempoBrinca;
 	}
 
 	// Funcao para criar um tempo usando CPU Bound
@@ -32,7 +39,9 @@ public class Kid extends Thread {
 	    	if( (milisegundos / 1000) > tempoDecorrido) {
 	    		System.out.println("Se passaram: " + tempoDecorrido + " segundos Crianca: " +
 	    							nome);
+	    		calback.updateTable();
 	    	}
+	    	tempoBrinca--;
 	    	tempoDecorrido = milisegundos / 1000;
 	    }
 	    System.out.println("Saiu!");
@@ -74,31 +83,102 @@ public class Kid extends Thread {
 
 	public void run() {
 		while (true) {
+		    tempoBrinca = aux;
 			if (this.temBola) {
-				System.out.println(this.nome + " esta brincando");
+				calback.updateLog(this.nome + " esta brincando\n");
+				//System.out.println(this.nome + " esta brincando");
 				brincar();
-				System.out.println(this.nome + " terminou de brincar");
+				calback.updateLog(this.nome + " terminou de brincar\n");
+				//System.out.println(this.nome + " terminou de brincar");
 				
 				try {
 					guardaBola();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println(this.nome + " guardou a bola");
+				calback.updateLog(this.nome + " guardou a bola\n");
+				//System.out.println(this.nome + " guardou a bola");
 				this.temBola = false;
-				System.out.println(this.nome + " esta dormindo");
+				calback.updateLog(this.nome + " esta dormindo\n");
+				//System.out.println(this.nome + " esta dormindo");
 				dormir();
 			} 
 			else {
-				System.out.println(this.nome + " vai pegar bola");
+				calback.updateLog(this.nome + " vai pegar bola\n");
+				//System.out.println(this.nome + " vai pegar bola");
 				try {
 					pegaBola();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println(this.nome + " pegou a bola");
+				calback.updateLog(this.nome + " pegou a bola\n");
+				//System.out.println(this.nome + " pegou a bola");
 				this.temBola = true;
 			}
 		}
+	}
+
+	public Semaphore getMutex() {
+		return mutex;
+	}
+
+	public void setMutex(Semaphore mutex) {
+		this.mutex = mutex;
+	}
+
+	public Semaphore getBolasCesto() {
+		return bolasCesto;
+	}
+
+	public void setBolasCesto(Semaphore bolasCesto) {
+		this.bolasCesto = bolasCesto;
+	}
+
+	public Semaphore getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(Semaphore vagas) {
+		this.vagas = vagas;
+	}
+
+	public boolean isTemBola() {
+		return temBola;
+	}
+
+	public void setTemBola(boolean temBola) {
+		this.temBola = temBola;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public long getTempoBrinca() {
+		return tempoBrinca;
+	}
+
+	public void setTempoBrinca(long tempoBrinca) {
+		this.tempoBrinca = tempoBrinca;
+	}
+
+	public long getTempoDorme() {
+		return tempoDorme;
+	}
+
+	public void setTempoDorme(long tempoDorme) {
+		this.tempoDorme = tempoDorme;
+	}
+
+	public CallBacks getCalback() {
+		return calback;
+	}
+
+	public void setCalback(CallBacks calback) {
+		this.calback = calback;
 	}
 }

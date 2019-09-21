@@ -1,14 +1,25 @@
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.util.concurrent.Semaphore;
 
 
-public class Main {
+public class Main extends Application {
 
 	public static void main(String[] args) {
-		int capacity = 5;
-		Parque park = new Parque(capacity);
-		park.addKid(true,"vinicius",10,10);
-		park.addKid(true,"hilbert",10,10);
-		park.addKid(false,"johnson",10,10);
-		park.addKid(true,"carol",10,10);
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		stage.setTitle("hshshsh");
+		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+		stage.setScene(new Scene(root));
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.show();
 	}
 }
