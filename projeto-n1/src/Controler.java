@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 public class Controler implements Initializable {
 
-    private Parque parquinho = new Parque(4);
+    private Parque parquinho = new Parque(2);
 
     @FXML
     private Button Btn;

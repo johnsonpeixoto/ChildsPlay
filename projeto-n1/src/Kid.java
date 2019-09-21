@@ -11,7 +11,7 @@ public class Kid extends Thread {
     private long tempoBrinca;
     private long tempoDorme;
 
-    private long aux;
+    private long aux, aux2;
 
     private CallBacks calback;
 
@@ -26,6 +26,7 @@ public class Kid extends Thread {
 		this.tempoBrinca = tempoBrinca;
 		this.tempoDorme = tempoDorme;
 		aux = tempoBrinca;
+		aux2 = tempoDorme;
 	}
 
 	// Funcao para criar um tempo usando CPU Bound
@@ -41,7 +42,12 @@ public class Kid extends Thread {
 	    							nome);
 	    		calback.updateTable();
 	    	}
-	    	tempoBrinca--;
+	    	if(tempo == aux){
+				tempoBrinca = tempoDecorrido;
+			}else if (tempo == aux2){
+	    		tempoDorme = tempoDecorrido;
+			}
+
 	    	tempoDecorrido = milisegundos / 1000;
 	    }
 	    System.out.println("Saiu!");
@@ -84,6 +90,7 @@ public class Kid extends Thread {
 	public void run() {
 		while (true) {
 		    tempoBrinca = aux;
+		    tempoDorme = aux2;
 			if (this.temBola) {
 				calback.updateLog(this.nome + " esta brincando\n");
 				//System.out.println(this.nome + " esta brincando");
