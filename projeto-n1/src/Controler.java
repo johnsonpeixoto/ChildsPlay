@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,7 +59,7 @@ public class Controler implements Initializable {
                 Long.parseLong(tempo_brincando.getText()),
                 Long.parseLong(tempo_quieto.getText()));
         tabela.getItems().setAll(parquinho.kids);
-        parquinho.kids.get(parquinho.kids.size()-1).setCalback(callback1);
+        parquinho.kids.get(parquinho.kids.size()-1).setCallback(callback1);
     }
 
     @FXML
@@ -90,8 +91,11 @@ public class Controler implements Initializable {
 
         @Override
         public void updateLog(String oldLog) {
-            String aux = log.getText();
-            log.setText(aux + oldLog);
+            Platform.runLater(() -> {
+                String aux = log.getText();
+                log.setText(aux + oldLog);
+                log.positionCaret(log.getLength());
+            });
         }
     };
 
