@@ -42,9 +42,9 @@ public class Kid extends Thread {
 	    							nome);
 	    		calback.updateTable();
 	    	}
-	    	if(tempo == aux){
+	    	if(temBola){
 				tempoBrinca = tempoDecorrido;
-			}else if (tempo == aux2){
+			}else{
 	    		tempoDorme = tempoDecorrido;
 			}
 
