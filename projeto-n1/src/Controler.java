@@ -49,6 +49,9 @@ public class Controler implements Initializable {
     @FXML
     private TextArea log;
 
+    @FXML
+    private TextArea capacidadeCesto;
+
 
 
     @FXML
@@ -59,7 +62,7 @@ public class Controler implements Initializable {
                 Long.parseLong(tempo_brincando.getText()),
                 Long.parseLong(tempo_quieto.getText()));
         tabela.getItems().setAll(parquinho.kids);
-        parquinho.kids.get(parquinho.kids.size()-1).setCallback(callback1);
+        parquinho.kids.get(parquinho.kids.size()-1).setCalback(callback1);
     }
 
     @FXML
@@ -96,6 +99,11 @@ public class Controler implements Initializable {
                 log.setText(aux + oldLog);
                 log.positionCaret(log.getLength());
             });
+        }
+
+        @Override
+        public void updateCesta() {
+            System.out.println(Cesta.bolas);
         }
     };
 

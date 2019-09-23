@@ -13,7 +13,7 @@ public class Kid extends Thread {
 
     private long aux, aux2;
 
-    private CallBacks callback;
+    private CallBacks calback;
 
 
 
@@ -40,17 +40,19 @@ public class Kid extends Thread {
 	    	if( (milisegundos / 1000) > tempoDecorrido) {
 	    		System.out.println("Se passaram: " + tempoDecorrido + " segundos Crianca: " +
 	    							nome);
-	    		callback.updateTable();
+	    		calback.updateTable();
 	    	}
-	    	if(tempo == aux){
+	    	if(temBola){
 				tempoBrinca = tempoDecorrido;
-			}else if (tempo == aux2){
+			}else{
 	    		tempoDorme = tempoDecorrido;
 			}
 
 	    	tempoDecorrido = milisegundos / 1000;
 	    }
 	    System.out.println("Saiu!");
+        tempoBrinca = aux;
+        tempoDorme = aux2;
 	    
 	}
 	
@@ -92,34 +94,30 @@ public class Kid extends Thread {
 		    tempoBrinca = aux;
 		    tempoDorme = aux2;
 			if (this.temBola) {
-				callback.updateLog(this.nome + " esta brincando\n");
-				//System.out.println(this.nome + " esta brincando");
+				calback.updateLog(this.nome + " esta brincando\n");
 				brincar();
-				callback.updateLog(this.nome + " terminou de brincar\n");
-				//System.out.println(this.nome + " terminou de brincar");
-				
+				calback.updateLog(this.nome + " terminou de brincar\n");
+
 				try {
 					guardaBola();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				callback.updateLog(this.nome + " guardou a bola\n");
-				callback.updateLog("Bolas no Cesto: " + Cesta.getBolas() + "\n");
+                calback.updateCesta();
+                calback.updateLog(this.nome + " guardou a bola\n");
 				this.temBola = false;
-				callback.updateLog(this.nome + " esta dormindo\n");
+				calback.updateLog(this.nome + " esta dormindo\n");
 				dormir();
 			} 
 			else {
-				callback.updateLog(this.nome + " vai pegar bola\n");
-				//System.out.println(this.nome + " vai pegar bola");
+				calback.updateLog(this.nome + " vai pegar bola\n");
 				try {
 					pegaBola();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				callback.updateLog(this.nome + " pegou a bola\n");
-				callback.updateLog("Bolas no Cesto: " + Cesta.getBolas() + "\n");
-				//System.out.println(this.nome + " pegou a bola");
+				calback.updateCesta();
+				calback.updateLog(this.nome + " pegou a bola\n");
 				this.temBola = true;
 			}
 		}
@@ -181,11 +179,11 @@ public class Kid extends Thread {
 		this.tempoDorme = tempoDorme;
 	}
 
-	public CallBacks getCallback() {
-		return callback;
+	public CallBacks getCalback() {
+		return calback;
 	}
 
-	public void setCallback(CallBacks callback) {
-		this.callback = callback;
+	public void setCalback(CallBacks calback) {
+		this.calback = calback;
 	}
 }
