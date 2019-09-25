@@ -6,8 +6,7 @@ public class Parque {
     public Semaphore mutex;
     public Semaphore bolasCesto ;
     public Semaphore vagas;
-
-    List<Kid> kids;
+    public List<Kid> kids;
 
     public Parque(int capacidadeCesta){
         //instanciando os semaforos

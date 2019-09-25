@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="508.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controler">
@@ -45,11 +47,30 @@
       <TextArea fx:id="log" layoutX="15.0" layoutY="532.0" prefHeight="175.0" prefWidth="623.0" />
       <Accordion />
 
-      <Label layoutX="20.0" layoutY="367.0" text="Capacidade do Cesto">
+      <Label layoutX="735.0" layoutY="607.0" text="Capacidade do Cesto">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextArea fx:id="capacidadeCesto" layoutX="58.0" layoutY="397.0" prefHeight="53.0" prefWidth="84.0" />
+      <TextArea fx:id="capacidadeCesto" layoutX="772.0" layoutY="645.0" prefHeight="53.0" prefWidth="84.0" />
+      <VBox fx:id="kidbox" layoutX="264.0" layoutY="16.0" prefHeight="371.0" prefWidth="367.0">
+         <children>
+            <ImageView fitHeight="83.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="140.0" />
+               </VBox.margin>
+            </ImageView>
+            <ImageView fitHeight="83.0" fitWidth="97.0" layoutX="150.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="140.0" />
+               </VBox.margin>
+            </ImageView>
+            <ImageView fitHeight="83.0" fitWidth="97.0" layoutX="10.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="140.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

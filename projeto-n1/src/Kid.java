@@ -67,6 +67,10 @@ public class Kid extends Thread {
 
 	//funcao consumidor
 	public void pegaBola() throws InterruptedException {
+	    if(bolasCesto.availablePermits() == 0) {
+            calback.updateLog("Cesto vazio! " + this.nome + " Bloqueado!\n");
+            calback.updatePath(this, Controler.pathBloqueada);
+        }
 		bolasCesto.acquire(); //down
 		mutex.acquire();
 		Cesta.bolas--;
@@ -76,16 +80,17 @@ public class Kid extends Thread {
 
 	//funcao produtor
 	public void guardaBola() throws InterruptedException {
-		 vagas.acquire();
+        if(vagas.availablePermits() == 0) {
+            calback.updateLog("Cesto cheio! " + this.nome + " Bloqueado!\n");
+            calback.updatePath(this, Controler.pathBloqueada);
+        }
+	    vagas.acquire();
 		 mutex.acquire();
 		 Cesta.bolas++;
 		 mutex.release();
 		 bolasCesto.release();
     }
 
-    public void ficaQuieta() {
-		//animacao
-	}
 
 
 
