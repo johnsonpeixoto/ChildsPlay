@@ -192,7 +192,7 @@ public class Controler implements Initializable {
             callback1.setPathBrincando(newKid);
         }
         else {
-            callback1.setPathBloqueada(newKid);
+            callback1.setPathQuieta(newKid);
         }
 
         bola.setSelected(false);
