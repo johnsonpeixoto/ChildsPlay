@@ -84,7 +84,7 @@ public class Kid extends Thread {
 	public void guardaBola() throws InterruptedException {
         if(vagas.availablePermits() == 0) {
             calback.updateLog("Cesto cheio! " + this.nome + " Bloqueado!\n");
-            calback.setPathBloqueada(this);
+            calback.setPathBloqueadaComBola(this);
         }
 	    vagas.acquire();
 		 mutex.acquire();

@@ -15,4 +15,6 @@ public interface CallBacks {
 
     void setPathBloqueada(Kid kid);
 
+    void setPathBloqueadaComBola(Kid kid);
+
 }

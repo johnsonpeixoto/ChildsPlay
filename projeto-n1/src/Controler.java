@@ -25,9 +25,11 @@ import java.util.concurrent.Semaphore;
 
 public class Controler implements Initializable {
 
-    private Parque parquinho = new Parque(2);
+
+    private Parque parquinho = new Parque(4); //Devera ser instanciado com a capacidadeMax
     public Path pathBrincando;
     public Path pathBloqueada;
+    public Path pathBloqueadaComBola;
     public Path pathQuieta;
 
 
@@ -123,6 +125,11 @@ public class Controler implements Initializable {
         }
 
         @Override
+        public void setPathBloqueadaComBola(Kid kid) {
+            callback1.updatePath(kid, pathBloqueadaComBola);
+        }
+
+        @Override
         public void updatePath(Kid kid, Path path) {
             Platform.runLater(() -> {
                 int index = parquinho.getKids().indexOf(kid);
@@ -133,15 +140,15 @@ public class Controler implements Initializable {
                     String imageURL = "";
                     if(path == pathBrincando) {
                         imageURL = location + "/src/combola.png";
-                        System.out.println(imageURL);
                     }
                     else if(path == pathQuieta) {
                         imageURL = location + "/src/sembola.png";
-                        System.out.println(imageURL);
                     }
                     else if(path == pathBloqueada) {
                         imageURL = location + "/src/bloqueada.png";
-                        System.out.println(imageURL);
+                    }
+                    else if(path == pathBloqueadaComBola) {
+                        imageURL = location + "/src/bloqueadaComBola.png";
                     }
                     image.setImage(new Image(new FileInputStream(imageURL)));
                 }
@@ -150,7 +157,7 @@ public class Controler implements Initializable {
                 }
                 kidbox.getChildren().add(index, image);
                 PathTransition pt1 = new PathTransition(Duration.millis(1000), path, image);
-                if(path != pathBloqueada) {
+                if(path != pathBloqueada && path != pathBloqueadaComBola) {
                     pt1.setCycleCount(Animation.INDEFINITE);
                     pt1.setAutoReverse(true);
                     pt1.play();
@@ -250,6 +257,8 @@ public class Controler implements Initializable {
         pathQuieta.getElements().addAll(new MoveTo(50,280), new LineTo(70, 280));
         pathBloqueada = new Path();
         pathBloqueada.getElements().addAll(new MoveTo(50,280), new LineTo(70, 280));
+        pathBloqueadaComBola = new Path();
+        pathBloqueadaComBola.getElements().addAll(new MoveTo(50,280), new LineTo(70, 280));
     }
 
 
