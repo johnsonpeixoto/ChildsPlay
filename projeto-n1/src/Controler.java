@@ -67,7 +67,7 @@ public class Controler implements Initializable {
     private TextArea log;
 
     @FXML
-    private TextArea capacidadeCesto;
+    private Label capacidadeCesto;
 
     @FXML
     private VBox kidbox;
@@ -126,20 +126,21 @@ public class Controler implements Initializable {
         public void updatePath(Kid kid, Path path) {
             Platform.runLater(() -> {
                 int index = parquinho.getKids().indexOf(kid);
+                System.out.println("Index update: "+index);
                 kidbox.getChildren().remove(index);
                 ImageView image = new ImageView();
                 try {
                     String imageURL = "";
                     if(path == pathBrincando) {
-                        imageURL = location + "\\src\\combola.png";
+                        imageURL = location + "/src/combola.png";
                         System.out.println(imageURL);
                     }
                     else if(path == pathQuieta) {
-                        imageURL = location + "\\src\\sembola.png";
+                        imageURL = location + "/src/sembola.png";
                         System.out.println(imageURL);
                     }
                     else if(path == pathBloqueada) {
-                        imageURL = location + "\\src\\bloqueada.png";
+                        imageURL = location + "/src/bloqueada.png";
                         System.out.println(imageURL);
                     }
                     image.setImage(new Image(new FileInputStream(imageURL)));
