@@ -5,9 +5,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.util.concurrent.Semaphore;
-
-
 public class Main extends Application {
 
 	public static void main(String[] args) {
@@ -16,9 +13,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		stage.setTitle("Projeto N1");
 		Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-		stage.setScene(new Scene(root));
+		stage.setTitle("Projeto N1");
+		stage.setScene(new Scene(root, 1024, 720));
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.show();
 	}

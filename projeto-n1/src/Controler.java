@@ -16,6 +16,7 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,8 +26,10 @@ import java.util.concurrent.Semaphore;
 
 public class Controler implements Initializable {
 
+    // Cria um frame para ser utilizado pelo Input Dialog do cesto
+    JFrame frame = new JFrame("Capacidade do Cesto");
 
-    private Parque parquinho = new Parque(4); //Devera ser instanciado com a capacidadeMax
+    private Parque parquinho = new Parque(Integer.parseInt(JOptionPane.showInputDialog(frame, "Qual a capacidade do cesto?")));
     public Path pathBrincando;
     public Path pathBloqueada;
     public Path pathBloqueadaComBola;
@@ -189,44 +192,8 @@ public class Controler implements Initializable {
         else {
             callback1.setPathBloqueada(newKid);
         }
-        /*
-        if (bola.isSelected()){
-            File imageLocation = new File(location + ".\\src\\combola.png");
-            Image image = new Image(imageLocation.toURI().toString());
-            ImageView img = new ImageView(image);
 
-            Path path = new Path();
-            path.getElements().addAll(new MoveTo(50,50), new HLineTo(100));
-            path.setFill(null);
-            kidbox.getChildren().add(path);
-
-            PathTransition pt = new PathTransition(Duration.millis(4000),path,img);
-            pt.setCycleCount(Animation.INDEFINITE);
-            pt.setAutoReverse(true);
-            pt.play();
-            kidbox.getChildren().add(img);
-        }else{
-
-            File  imageLocation = new File(location + ".\\src\\sembola.png");
-            Image image = new Image(imageLocation.toURI().toString());
-            ImageView img = new ImageView(image);
-
-            Path path = new Path();
-            path.getElements().addAll(new MoveTo(50,50), new VLineTo(100));
-            path.setFill(null);
-            kidbox.getChildren().add(path);
-
-            PathTransition pt = new PathTransition(Duration.millis(4000),path,img);
-            pt.setCycleCount(Animation.INDEFINITE);
-            pt.setAutoReverse(true);
-            pt.play();
-            kidbox.getChildren().add(img);
-        }
-
-         */
         bola.setSelected(false);
-
-
     }
 
 
