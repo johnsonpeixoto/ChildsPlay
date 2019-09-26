@@ -19,10 +19,11 @@ public class Parque {
 
     }
 
-    public void addKid(boolean temBola, String nome, long tempoBrinca, long tempoDorme){
+    public Kid addKid(boolean temBola, String nome, long tempoBrinca, long tempoDorme){
         Kid novaKid = new Kid(mutex,bolasCesto,vagas,temBola,nome,tempoBrinca,tempoDorme);
         kids.add(novaKid);
         novaKid.start();
+        return novaKid;
     }
 
     public void killKid(String nome){

@@ -1,3 +1,5 @@
+import javafx.application.Platform;
+
 import java.util.concurrent.Semaphore;
 
 public class Kid extends Thread {
@@ -69,7 +71,7 @@ public class Kid extends Thread {
 	public void pegaBola() throws InterruptedException {
 	    if(bolasCesto.availablePermits() == 0) {
             calback.updateLog("Cesto vazio! " + this.nome + " Bloqueado!\n");
-            calback.updatePath(this, Controler.pathBloqueada);
+            calback.setPathBloqueada(this);
         }
 		bolasCesto.acquire(); //down
 		mutex.acquire();
@@ -82,7 +84,7 @@ public class Kid extends Thread {
 	public void guardaBola() throws InterruptedException {
         if(vagas.availablePermits() == 0) {
             calback.updateLog("Cesto cheio! " + this.nome + " Bloqueado!\n");
-            calback.updatePath(this, Controler.pathBloqueada);
+            calback.setPathBloqueada(this);
         }
 	    vagas.acquire();
 		 mutex.acquire();
@@ -99,7 +101,10 @@ public class Kid extends Thread {
 		    tempoBrinca = aux;
 		    tempoDorme = aux2;
 			if (this.temBola) {
-				calback.updateLog(this.nome + " esta brincando\n");
+				Platform.runLater(() -> {
+					calback.updateLog(this.nome + " esta brincando\n");
+				});
+
 				brincar();
 				calback.updateLog(this.nome + " terminou de brincar\n");
 
@@ -112,6 +117,7 @@ public class Kid extends Thread {
                 calback.updateLog(this.nome + " guardou a bola\n");
 				this.temBola = false;
 				calback.updateLog(this.nome + " esta dormindo\n");
+                calback.setPathQuieta(this);
 				dormir();
 			} 
 			else {
@@ -123,6 +129,7 @@ public class Kid extends Thread {
 				}
 				calback.updateCesta();
 				calback.updateLog(this.nome + " pegou a bola\n");
+				calback.setPathBrincando(this);
 				this.temBola = true;
 			}
 		}

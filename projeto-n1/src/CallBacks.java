@@ -9,4 +9,10 @@ public interface CallBacks {
 
     void updatePath(Kid kid, Path path);
 
+    void setPathBrincando(Kid kid);
+
+    void setPathQuieta(Kid kid);
+
+    void setPathBloqueada(Kid kid);
+
 }
