@@ -26,15 +26,6 @@ public class Parque {
         return novaKid;
     }
 
-    public void killKid(String nome){
-        //funcao anonima
-        kids.forEach((kid) -> {
-            if(nome == kid.getName()) {
-                kid.stop();
-                kids.remove(kid);
-            }
-        });
-    }
 
     public Semaphore getMutex() {
         return mutex;

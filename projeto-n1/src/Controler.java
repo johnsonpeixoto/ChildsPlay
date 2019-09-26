@@ -160,11 +160,13 @@ public class Controler implements Initializable {
                 }
                 kidbox.getChildren().add(index, image);
                 PathTransition pt1 = new PathTransition(Duration.millis(1000), path, image);
+                // Se nao estiver bloqueada, executa a animacao
                 if(path != pathBloqueada && path != pathBloqueadaComBola) {
                     pt1.setCycleCount(Animation.INDEFINITE);
                     pt1.setAutoReverse(true);
                     pt1.play();
                 }
+                // Se estiver bloqueada nao executa a animacao
                 else {
                     pt1.setDuration(Duration.INDEFINITE);
                     pt1.play();

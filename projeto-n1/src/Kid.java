@@ -52,7 +52,6 @@ public class Kid extends Thread {
 
 	    	tempoDecorrido = milisegundos / 1000;
 	    }
-	    System.out.println("Saiu!");
         tempoBrinca = aux;
         tempoDorme = aux2;
 	    
