@@ -164,7 +164,14 @@ public class Controler implements Initializable {
                 if(path != pathBloqueada && path != pathBloqueadaComBola) {
                     pt1.setCycleCount(Animation.INDEFINITE);
                     pt1.setAutoReverse(true);
+
                     pt1.play();
+                    /*System.out.println("PARA!");
+                    try {
+                        parquinho.getKids().get(0).wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }*/
                 }
                 // Se estiver bloqueada nao executa a animacao
                 else {
@@ -188,10 +195,9 @@ public class Controler implements Initializable {
         tempo_brincando.setText("");
         tempo_quieto.setText("");
 
-        if(bola.isSelected()) {
+        if(bola.isSelected() || Cesta.getBolas() > 0) {
             callback1.setPathBrincando(newKid);
-        }
-        else {
+        } else {
             callback1.setPathQuieta(newKid);
         }
 
