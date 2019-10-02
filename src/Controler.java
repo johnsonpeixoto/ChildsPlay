@@ -142,16 +142,16 @@ public class Controler implements Initializable {
                 try {
                     String imageURL = "";
                     if(path == pathBrincando) {
-                        imageURL = location + "/src/combola.png";
+                        imageURL = location + "/src/sprites/combola.png";
                     }
                     else if(path == pathQuieta) {
-                        imageURL = location + "/src/sembola.png";
+                        imageURL = location + "/src/sprites/sembola.png";
                     }
                     else if(path == pathBloqueada) {
-                        imageURL = location + "/src/bloqueada.png";
+                        imageURL = location + "/src/sprites/bloqueada.png";
                     }
                     else if(path == pathBloqueadaComBola) {
-                        imageURL = location + "/src/bloqueadaComBola.png";
+                        imageURL = location + "/src/sprites/bloqueadaComBola.png";
                     }
                     image.setImage(new Image(new FileInputStream(imageURL)));
                 }
