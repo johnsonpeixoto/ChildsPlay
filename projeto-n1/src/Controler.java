@@ -28,14 +28,14 @@ public class Controler implements Initializable {
 
     // Cria um frame para ser utilizado pelo Input Dialog do cesto
     JFrame frame = new JFrame("Capacidade do Cesto");
-
     private Parque parquinho = new Parque(Integer.parseInt(JOptionPane.showInputDialog(frame, "Qual a capacidade do cesto?")));
+
     public Path pathBrincando;
     public Path pathBloqueada;
     public Path pathBloqueadaComBola;
     public Path pathQuieta;
 
-
+    // Salva o diretorio raiz do projeto
     private String location = System.getProperty("user.dir");
 
     @FXML
@@ -165,6 +165,12 @@ public class Controler implements Initializable {
                     pt1.setCycleCount(Animation.INDEFINITE);
                     pt1.setAutoReverse(true);
                     pt1.play();
+                    /*System.out.println("PARA!");
+                    try {
+                        parquinho.getKids().get(0).wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }*/
                 }
                 // Se estiver bloqueada nao executa a animacao
                 else {
@@ -177,24 +183,27 @@ public class Controler implements Initializable {
 
     @FXML
     void add_child(ActionEvent event) {
-        //evento do botao
+        //instancia um nova thread ao clicar no botao
        Kid newKid = parquinho.addKid(bola.isSelected(),
                 id.getText(),
                 Long.parseLong(tempo_brincando.getText()),
                 Long.parseLong(tempo_quieto.getText()));
-        tabela.getItems().setAll(parquinho.kids);
-        parquinho.kids.get(parquinho.kids.size()-1).setCalback(callback1);
-        id.setText("");
-        tempo_brincando.setText("");
-        tempo_quieto.setText("");
 
-        if(bola.isSelected()) {
+        tabela.getItems().setAll(parquinho.kids);
+
+        // Salva na lista de crianças do parque
+        parquinho.kids.get(parquinho.kids.size()-1).setCalback(callback1);
+
+        if(bola.isSelected() || Cesta.getBolas() > 0) {
             callback1.setPathBrincando(newKid);
-        }
-        else {
+        } else {
             callback1.setPathQuieta(newKid);
         }
 
+        // Limpa os campos da interface
+        id.setText("");
+        tempo_brincando.setText("");
+        tempo_quieto.setText("");
         bola.setSelected(false);
     }
 

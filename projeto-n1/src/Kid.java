@@ -85,7 +85,7 @@ public class Kid extends Thread {
             calback.updateLog("Cesto cheio! " + this.nome + " Bloqueado!\n");
             calback.setPathBloqueadaComBola(this);
         }
-	    vagas.acquire();
+	    vagas.acquire();//down
 		 mutex.acquire();
 		 Cesta.bolas++;
 		 mutex.release();
@@ -104,7 +104,7 @@ public class Kid extends Thread {
 					calback.updateLog(this.nome + " esta brincando\n");
 				});
 
-				brincar();
+				brincar(); // cpu-bound com tempo de brincadeira
 				calback.updateLog(this.nome + " terminou de brincar\n");
 
 				try {
@@ -115,11 +115,10 @@ public class Kid extends Thread {
                 calback.updateCesta();
                 calback.updateLog(this.nome + " guardou a bola\n");
 				this.temBola = false;
+			} else {
 				calback.updateLog(this.nome + " esta dormindo\n");
-                calback.setPathQuieta(this);
-				dormir();
-			} 
-			else {
+				calback.setPathQuieta(this);
+				dormir(); // cpu-bound com tempo de ficar quieta
 				calback.updateLog(this.nome + " vai pegar bola\n");
 				try {
 					pegaBola();
