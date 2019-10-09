@@ -1,15 +1,3 @@
-# IntelliJ IDEA
-.DS_Store
-.idea
-
-# Eclipse files
-projeto-n1/src/.classpath
-projeto-n1/src/.project
-
-# Outros Projetos
-thread-com-java/
-pratica1/
-
 # Compiled class file
 *.class
 
